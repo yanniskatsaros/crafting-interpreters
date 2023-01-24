@@ -1,0 +1,26 @@
+(lang dune 3.6)
+
+(name lox)
+
+(generate_opam_files true)
+
+(source
+ (github yanniskatsaros/crafting-interpreters))
+
+(authors "Yannis Katsaros")
+
+(maintainers "Yannis Katsaros")
+
+(license MIT)
+
+(documentation https://github.com/yanniskatsaros/crafting-interpreters)
+
+(package
+ (name lox)
+ (synopsis "An OCaml implementation of the Lox language")
+ (description "An OCaml implementation of the Lox language")
+ (depends ocaml dune)
+ (tags
+  (crafting-interpreters language parser interpreter compiler bytecode virtual-machine)))
+
+; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
