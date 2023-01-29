@@ -1,0 +1,109 @@
+// comments begin with two slashes
+
+
+// booleans
+true;  // true
+false; // false
+
+// numbers
+1234;  // an integer
+12.34; // a decimal number
+
+// strings
+"I am a string";
+"";    // the empty string
+"123"; // this is also a string
+
+
+// variable declaration
+var i = 1;
+var j = 2;
+
+
+// arithmetic
+i + j;  // addition
+i - j;  // subtraction
+i * j;  // multiplication
+i / j;  // division
+
+-i  // negation
+
+// comparison and equality
+i < j;
+i > j;
+i >= j;
+i <= j;
+
+1 == 2; // false
+"cat" != "dog"; // true
+314 == "pi"; // false (yuck)
+123 == "123"; // false (thank god)
+
+!true;  // false
+!false; // true
+
+true and false;  // false
+true and true;   // true
+false or false;  // false
+true or false;   // true
+
+
+// precedence and grouping
+var average = (min + max) / 2;
+
+
+// statements
+
+print "hello world";
+
+// block statement
+{
+  print "first";
+  print "second";
+}
+
+// control flow
+
+if ( 1 == 1 ) {
+  print "yes";
+} else {
+  print "no";
+}
+
+
+// while loop
+var a = 1;
+while (a < 10) {
+  print a;
+  a = a + 1;
+}
+
+
+// for-loop
+for (var a = 1; a < 10; a = a + 1) {
+  print a;
+}
+
+
+// function definition
+func print_and_return_sum(a, b) {
+  var c = a + b;
+  print c;
+  return c;
+}
+
+
+// classes
+
+class Breakfast {
+  init(meat, bread) {
+    this.meat = meat;
+    this.bread = bread;
+  }
+
+  serve(who) {
+    print "Enjoy your " + this.meat + " and " +
+      this.bread + ", " + who + ".";
+  }
+}
+
