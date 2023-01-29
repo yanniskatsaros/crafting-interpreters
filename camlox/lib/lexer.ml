@@ -323,18 +323,6 @@ let number_literal input =
     end
 
 
-(* FIXME: remove after including in two_char_token *)
-let comment input =
-  let comment' = sequence [
-    (tag "//");
-    (take_while (fun c -> c <> '\n'))
-  ]
-  in
-  match comment' input with
-    | Some (ret, rem) -> Some (TokenKind.Comment(ret), rem)
-    | None -> None
-
-
 let token =
   let token' = alt [
     two_char_token;
