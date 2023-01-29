@@ -1,13 +1,13 @@
 module Lexer = Lox.Lexer
-module Token = Lox.Token
+module TokenKind = Lox.TokenKind
 module Error = Lox.Error
 
 let run source =
-  match Lexer.tokens source with
-    | Ok tokens ->
+  match Lexer.lex source with
+    | Ok token_kinds ->
       List.iter
-        (fun token -> Format.printf "%s\n" (Token.show token))
-        tokens
+        (fun tk -> Format.printf "%s\n" (TokenKind.show tk))
+        token_kinds
     | Error e -> Error.report e
 
 
@@ -17,14 +17,21 @@ let run_file filename =
 
 
 let run_repl () =
-  while true do
-    try
-      print_string ">> ";
-      match In_channel.input_line In_channel.stdin with
-        | Some line -> print_endline line; run line
+  let write str =
+    Out_channel.output_string Out_channel.stdout str;
+    Out_channel.flush Out_channel.stdout
+  in
+  let input () = In_channel.input_line In_channel.stdin in
+
+  write "\n";
+  try
+    while true do
+      write ">> ";
+      match input () with
+        | Some line -> run line
         | None -> raise End_of_file
-    with _ -> ()
-  done
+    done
+  with _ -> ()
 
 
 let () =
