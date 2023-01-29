@@ -325,11 +325,11 @@ let number_literal input =
 
 let token =
   let token' = alt [
+    number_literal;
+    string_literal;
+    keyword_or_ident;
     two_char_token;
     one_char_token;
-    keyword_or_ident;
-    string_literal;
-    number_literal;
   ] in
   delimited whitespace0 token' whitespace0
     
