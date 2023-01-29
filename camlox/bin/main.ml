@@ -2,6 +2,21 @@ module Lexer = Lox.Lexer
 module TokenKind = Lox.TokenKind
 module Error = Lox.Error
 
+let repl_banner =
+  let lox_ascii_art =
+    {|
+     __         ______     __  __
+    /\ \       /\  __ \   /\_\_\_\
+    \ \ \____  \ \ \/\ \  \/_/\_\/_
+     \ \_____\  \ \_____\   /\_\/\_\
+      \/_____/   \/_____/   \/_/\/_/
+    |}
+  in
+  (Format.sprintf
+    "%s\n=== Welcome to the Lox REPL! Type <Ctrl+D> to quit. ===\n"
+    lox_ascii_art)
+
+
 let run source =
   match Lexer.lex source with
     | Ok token_kinds ->
@@ -23,12 +38,15 @@ let run_repl () =
   in
   let input () = In_channel.input_line In_channel.stdin in
 
-  write "\n";
+  write repl_banner;
   try
+    let i = ref 1 in
     while true do
-      write ">> ";
+      write (Format.sprintf "\n[%d]: " !i);
       match input () with
-        | Some line -> run line
+        | Some line ->
+            run line;
+            i := !i + 1
         | None -> raise End_of_file
     done
   with _ -> ()
